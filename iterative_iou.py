@@ -1,3 +1,5 @@
+from mmdet3d.structures import BaseInstance3DBoxes,
+
 def iterated_iou(boxes_list: [BaseInstance3DBoxes],) -> [dict]:
     box_num = len(boxes_list)
     boxes_list = [dict(key_region=box.bev[...,:4], other_area=box.dims[...,0] * box.dims[...,1],
