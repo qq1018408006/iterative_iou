@@ -70,8 +70,8 @@ def single_iou(former_boxes:dict, later_boxes: dict) -> torch.tensor:
     # kr_area = (kr[..., 2] - kr[..., 0]) * (kr[..., 3] - kr[..., 1])
     # nb_area = (nb[..., 2] - nb[..., 0]) * (nb[..., 3] - nb[..., 1]) ## (N, )
 
-    other_area_new = other_area_f.unsqueeze(1).expand_as(inter) + other_area_l.unsqueeze(0).expand_as(inter) - inter
-    iou_matrices = inter / other_area_new
+    other_area_new = other_area_f.unsqueeze(1).expand_as(inter) + other_area_l.unsqueeze(0).expand_as(inter)
+    iou_matrices = 2 * inter / other_area_new
     meta_shape = [*meta_shape, N]
     iou_matrices = iou_matrices
     # key_region_new = torch.cat([min_xy, max_xy], dim=-1)
